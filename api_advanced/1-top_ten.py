@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+"""
+Module to query the Reddit API and print the titles of the first 10 hot posts for a given subreddit.
+"""
+
 import requests
 
 def top_ten(subreddit):
@@ -24,5 +29,12 @@ def top_ten(subreddit):
                 print(post['data']['title'])
         else:
             print(None)
-    except requests.RequestException as e:
+    except requests.RequestException:
         print(None)
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) < 2:
+        print("Please pass an argument for the subreddit to search.")
+    else:
+        top_ten(sys.argv[1])
